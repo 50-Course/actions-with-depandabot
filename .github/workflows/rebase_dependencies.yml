@@ -1,0 +1,27 @@
+# This workflow keeps our 'dependencies' branch
+# up to date with our main branch.
+
+name: Auto Rebase
+
+on:
+ push:
+  branches:
+   - master
+
+jobs:
+  rebase:
+   name: Rebase `dependencies` into `master`
+   steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        ref: dependencies
+    - run: > 
+        # Git Idenfication configuration
+        git config user.email github-actions@github.com
+        git config user.name github-actions
+        git rebase orgin/master
+        # to prevent unexpected outcome we using
+        # --force-with-lease instead of --force
+        # this ensures rebase of branch.
+        git push origin dependencies --force-with-lease
