@@ -1,0 +1,9 @@
+# Uses version 2 of the YAML version
+version: 2
+updates:
+  # Enable version updates for Python packages
+  - package-ecosystem: "pip"
+    directory: "/"
+    # Check for updates weekly
+    schedule:
+      interval: "weekly"
