@@ -7,3 +7,11 @@ updates:
     # Check for updates weekly
     schedule:
       interval: "weekly"
+    # merge issues occurs a lot with dependabot dependency
+    # migration. 
+    # To avoid this, we could pull our dependabot PRs locally
+    # update our dependency and merge to main branch after that.
+    #
+    # The target branch rule, allows us to checkout locally to
+    # a dependency branch.
+    target-branch: "dependencies"
