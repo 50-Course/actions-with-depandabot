@@ -1,5 +1,7 @@
 # This workflow keeps our 'dependencies' branch
 # up to date with our main branch.
+#
+# source: https://www.hacksoft.io/blog/managing-dependencies-with-github-dependabot-and-actions#dependabot
 
 name: Auto Rebase
 
@@ -11,9 +13,12 @@ on:
 jobs:
   rebase:
    name: Rebase `dependencies` into `master`
+   runs-on: ubuntu-latest
    steps:
     - uses: actions/checkout@v3
       with:
+        # without fetch-depth one would be unable to push
+        # refs to dest repo
         fetch-depth: 0
         ref: dependencies
     - run: > 
